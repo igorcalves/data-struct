@@ -129,7 +129,7 @@ int main() {
     inserirElemListaOrd(&lista, reg3);
 
     // Exibindo a lista
-    printf("Lista após inserção:\n");
+    printf("Lista apÃ³s inserÃ§Ã£o:\n");
     exibirLista(&lista);
 
     // Buscando um elemento
@@ -138,28 +138,27 @@ int main() {
     if (encontrado != NULL) {
         printf("Elemento %d encontrado.\n", chaveBusca);
     } else {
-        printf("Elemento %d não encontrado.\n", chaveBusca);
+        printf("Elemento %d nÃ£o encontrado.\n", chaveBusca);
     }
 
     // Excluindo um elemento
     int chaveExclusao = 10;
     if (excluirElemLista(&lista, chaveExclusao)) {
-        printf("Elemento %d excluído.\n", chaveExclusao);
+        printf("Elemento %d excluÃ­do.\n", chaveExclusao);
     } else {
-        printf("Elemento %d não encontrado para exclusão.\n", chaveExclusao);
+        printf("Elemento %d nÃ£o encontrado para exclusÃ£o.\n", chaveExclusao);
     }
 
-    // Exibindo a lista após exclusão
-    printf("Lista após exclusão:\n");
+    // Exibindo a lista apÃ³s exclusÃ£o
+    printf("Lista apÃ³s exclusÃ£o:\n");
     exibirLista(&lista);
 
     // Reinicializando a lista
     reinicializarLista(&lista);
 
-    // Exibindo a lista após reinicialização
-    printf("Lista após reinicialização:\n");
+    // Exibindo a lista apÃ³s reinicializaÃ§Ã£o
+    printf("Lista apÃ³s reinicializaÃ§Ã£o:\n");
     exibirLista(&lista);
 
     return 0;
 }
-

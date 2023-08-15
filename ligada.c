@@ -71,14 +71,21 @@ bool inserirElemListaOrd(LISTA* l, REGISTRO reg){
 	if(l->dispo == INVALIDO) return false;
 	int ant = INVALIDO;
 	int i = l->inicio;
+
 	TIPOCHAVE ch = reg.chave;
+
 	while((i != INVALIDO)  && (l->A[i].reg.chave < ch)){
 		ant = i;
 		i = l->A[i].prox;
 	}
+
+
 	if(i !=INVALIDO && l->A[i].prox == ch) return false;
+
 	i = obterNO(l);
+
 	l->A[i].reg = reg;
+	
 	if(ant == INVALIDO){
 		l->A[i].prox = l->inicio;
 		l->inicio = i;
@@ -117,14 +124,13 @@ int main(){
     LISTA lista;
     incializarLista(&lista);
     
- 	REGISTRO r3 = {15};
-    REGISTRO r2 = {20};
-    REGISTRO r1 = {10};
+    REGISTRO r1 = {1};
+    REGISTRO r2 = {4};
+ 	REGISTRO r3 = {3};
   
-	inserirElemListaOrd(&lista, r3);
     inserirElemListaOrd(&lista, r1);
-    
 	inserirElemListaOrd(&lista, r2);
+	inserirElemListaOrd(&lista, r3);
     
 
     exibirLista(&lista);  // Deve exibir: Lista: " 10 15 20 "
