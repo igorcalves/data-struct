@@ -41,49 +41,6 @@
 		return tam;
 	}
 
-<<<<<<< HEAD
-int buscaSequencialOrd(LISTA* l, TIPOCHAVE ch){
-	int i = l->inicio;
-	while(i != INVALIDO && l->A[i].reg.chave < ch)
-		i = l->A[i].prox;
-	if(i != INVALIDO && l->A[i].reg.chave == ch)
-		return i;
-	else return INVALIDO;
-}
-
-int obterNO(LISTA* l){
-	int resultado = l->dispo;
-	if(l->dispo != INVALIDO)
-		l->dispo = l->A[l->dispo].prox;
-	return resultado;
-}
-
-bool inserirElemListaOrd(LISTA* l, REGISTRO reg){
-	if(l->dispo == INVALIDO) return false;
-	int ant = INVALIDO;
-	int i = l->inicio;
-
-	TIPOCHAVE ch = reg.chave;
-
-	while((i != INVALIDO)  && (l->A[i].reg.chave < ch)){
-		ant = i;
-		i = l->A[i].prox;
-	}
-
-
-	if(i !=INVALIDO && l->A[i].prox == ch) return false;
-
-	i = obterNO(l);
-
-	l->A[i].reg = reg;
-	
-	if(ant == INVALIDO){
-		l->A[i].prox = l->inicio;
-		l->inicio = i;
-	}else{
-		l->A[i].prox = l->A[ant].prox;
-		l->A[ant].prox = i;
-=======
 	void exibirLista(LISTA* l){
 		int i = l ->inicio;
 		printf("Lista: \" ");
@@ -101,7 +58,6 @@ bool inserirElemListaOrd(LISTA* l, REGISTRO reg){
 		if(i != INVALIDO && l->A[i].reg.chave == ch)
 			return i;
 		else return INVALIDO;
->>>>>>> 5e98191c79fa6e3973e8d24d2659bcf017a3c371
 	}
 
 	int obterNO(LISTA* l){
@@ -118,22 +74,7 @@ bool inserirElemListaOrd(LISTA* l, REGISTRO reg){
 		int ant = INVALIDO;
 		int i = l->inicio;
 
-<<<<<<< HEAD
-int main(){
-    LISTA lista;
-    incializarLista(&lista);
-    
-    REGISTRO r1 = {1};
-    REGISTRO r2 = {4};
- 	REGISTRO r3 = {3};
-  
-    inserirElemListaOrd(&lista, r1);
-	inserirElemListaOrd(&lista, r2);
-	inserirElemListaOrd(&lista, r3);
-    
-=======
 		TIPOCHAVE ch = reg.chave;
->>>>>>> 5e98191c79fa6e3973e8d24d2659bcf017a3c371
 
 		while((i != INVALIDO)  && (l->A[i].reg.chave < ch)){// se entrar nesse laço significa que NÃO estamos falando de um valor que está na posição de Inicio
 			ant = i;

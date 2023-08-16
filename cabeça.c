@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <stdbool.h>
+
+
 typedef int TIPOCHAVE;
 
 
@@ -9,27 +11,28 @@ typedef struct {
 	TIPOCHAVE chave;
 }REGISTRO;
 
-typedef struct aux{
+typedef struct tempRegistro{
 	REGISTRO reg;
-	struct aux* prox;
+	struct tempRegistro* prox;
 }ELEMENTO;
 
 typedef ELEMENTO* PONT;
 
 typedef struct{
-	PONT inicio;
+	PONT cabeca;
 }LISTA;
 
 
 void incializarLista(LISTA* l){
-	l->inicio = NULL;
+	l->cabeca = (PONT)malloc(sizeof(ELEMENTO));
+	l->cabeca->prox = l->cabeca;
 }
 
 int tamanho (LISTA* l){
-	PONT end = l->inicio;
+	PONT end = l->cabeca->prox;
 	int tam = 0;
 	
-	while(end != NULL){
+	while(end != l->cabeca){
 	tam++;
 	end = end->prox;
 	}
@@ -38,33 +41,43 @@ int tamanho (LISTA* l){
 
 
 void exibirLista(LISTA* l){
-	PONT end = l->inicio;
+	PONT end = l->cabeca->prox;
 	printf("Lista: \" ");
-	while(end != NULL){
+	while(end != l->cabeca){
 		printf("%i ", end->reg.chave);
 		end = end->prox;
 	}
 	printf("\"\n");
 }
 
+PONT bucaSentinela(LISTA* l, TIPOCHAVE ch){
+	PONT pos = l->cabeca->prox;
+	l->cabeca->reg.chave = ch;
+	while(pos->reg.chave != ch) pos = pos->prox;
+	if(pos != l->cabeca) return pos;
+	return NULL;
+}
+
+PONT buscaSentinelaOrd(LISTA* l, TIPOCHAVE ch){
+	PONT pos = l->cabeca->prox;
+	l->cabeca->reg.chave = ch;
+	while (pos->reg.chave < ch) pos = pos->prox;
+	if(pos != l->cabeca  && pos ->reg.chave == ch) return pos;
+	return NULL;
+}
+
 PONT buscaSequencial(LISTA * l, TIPOCHAVE ch){
 	PONT pos = l->inicio;
-	while(pos != NULL ){
+	while(pos != l->cabeca ){
 		if(pos->reg.chave == ch) return pos;
 		pos = pos->prox;
 	}
 	return NULL;
 }
 
-PONT buscaSeqOrd(LISTA* l, TIPOCHAVE ch){
-	PONT pos = l->inicio;
-	while (pos != NULL && pos->reg.chave < ch) pos = pos->prox;
-	if(pos != NULL  && pos ->reg.chave == ch) return pos;
-	return NULL;
-}
 PONT buscaSequencialExc(LISTA* l, TIPOCHAVE ch, PONT* ant) {
-    *ant = NULL;
-    PONT atual = l->inicio;
+    *ant = l->cabeca;
+    PONT atual = l->cabeca->prox;
     
     while ((atual != NULL) && (atual->reg.chave < ch)) {
         *ant = atual;
